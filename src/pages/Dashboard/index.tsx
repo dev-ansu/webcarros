@@ -1,7 +1,7 @@
 import { FiTrash2 } from "react-icons/fi";
 import PainelHeader from "../../components/painelHeader";
 import { useEffect, useState } from "react";
-import { collection, deleteDoc, doc, getDocs, orderBy, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { db, storage } from "../../services/firebase";
 import { CarsProps } from "../Home";
 import { useAuthContext } from "../../contexts/AuthContext";

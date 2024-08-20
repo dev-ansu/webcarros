@@ -13,7 +13,7 @@ import Button from "../../components/Button";
 
 const Login = ()=>{
     
-    const {handleSubmit, register, formState:{ errors }, reset} = useForm<LoginData>({
+    const {handleSubmit, register, formState:{ errors }} = useForm<LoginData>({
         mode:"onChange",
         resolver: zodResolver(loginSchemaValidation),
     });

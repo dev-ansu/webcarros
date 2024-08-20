@@ -1,5 +1,5 @@
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../../services/firebase";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,6 @@ export interface CarImageProps{
 }
 
 const Home = ()=>{
-    const searchButtonRef = useRef<HTMLButtonElement>();
     const [cars, setCars] = useState<CarsProps[]>();
     const [loadImages, setLoadImages] = useState<string[]>([]);
     const [input, setInput] = useState('');
@@ -87,28 +86,18 @@ const Home = ()=>{
         return;
     }
 
-    const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>)=>{
-        if(input.trim() != ''){
-            if(e.key.toLowerCase() == 'enter'){
-                if(searchButtonRef.current){
-                    searchButtonRef.current?.click();
-                }
-            }
-        }
-        // setInput(e.target.value)
-    }
+    
 
     return (
         <>
         <section className="bg-white rounded-lg p-4 w-full max-w-3xl mx-auto flex items-center justify-center gap-2">
             <input 
                 value={input}
-                onKeyUp={handleKeyUp}
                 onChange={(e) => setInput(e.target.value)}
                 className="w-full border-2 rounded-lg h-9 px-3 outline-none "
                 placeholder="Digite o nome do carro"
                 />
-            <button ref={searchButtonRef} onClick={handleSearchCar} className="bg-red-500 h-9 px-8 rounded-lg text-white font-medium text-lg">Buscar</button>
+            <button onClick={handleSearchCar} className="bg-red-500 h-9 px-8 rounded-lg text-white font-medium text-lg">Buscar</button>
         </section>
         <h1 className="font-bold text-center mt-6 text-2xl mb-4">Carros novos e usados em todo Brasil!</h1>
 

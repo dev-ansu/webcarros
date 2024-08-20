@@ -9,7 +9,7 @@ const Button = ({text, className, ...props}: ButtonProps)=>{
     const combinedClasses = className ? `${className} ${classes}`:classes;
 
     return(
-        <button  type="submit" className={combinedClasses}>
+        <button {...props}  type="submit" className={combinedClasses}>
             {text}
         </button>
     )

@@ -1,7 +1,7 @@
 import {signOut} from "firebase/auth";
 import { Link } from "react-router-dom";
 import {FiLogOut} from "react-icons/fi"
-import { MouseEvent, HTMLButtonElement } from "react";
+import { MouseEvent } from "react";
 import { auth } from "../../services/firebase";
 
 const PainelHeader = ()=>{
