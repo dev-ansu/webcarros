@@ -10,6 +10,7 @@ import {auth} from "../../services/firebase";
 import {signInWithEmailAndPassword, signOut} from "firebase/auth"
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Login = ()=>{
     
@@ -17,6 +18,7 @@ const Login = ()=>{
         mode:"onChange",
         resolver: zodResolver(loginSchemaValidation),
     });
+    const {handleInfoUser} = useAuthContext();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -29,7 +31,11 @@ const Login = ()=>{
     const onSubmit = async (data: LoginData)=>{
         try{
             const user = await signInWithEmailAndPassword(auth, data.email, data.password);
-            console.log(user);
+            handleInfoUser({
+                uid: user.user.uid,
+                email: user.user.email,
+                name: user.user.displayName,
+            });
             toast.success("Usuário logado com sucesso.");
             navigate("/dashboard");
         }catch(err: unknown){
