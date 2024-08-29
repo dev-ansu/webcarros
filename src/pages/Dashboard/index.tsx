@@ -40,7 +40,7 @@ const Dashboard = ()=>{
             }
         }
         loadCars();
-    },[])
+    })
 
     const handleDeleteCar = async (car: CarsProps)=>{
         const docRef = doc(db, 'cars',car.id);
